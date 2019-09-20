@@ -1,0 +1,108 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 13 Sep 2019, 9:00:15 AM
+    Author     : imjason
+*/
+*{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.test{
+    margin-top:5%;
+}
+.active {
+  background-color: #818889;
+}
+.border {
+  border-bottom: 4px solid black;
+  background-color: lightgrey;
+  margin: 5%;
+  padding: 5%;
+}
+.head{
+  text-align: center;
+  margin: 0;
+  padding: 3%;
+}
+.font{
+    font-family: "Arial", Times, serif;
+}
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+ul {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+
+body{
+    background-color: ghostwhite;
+}
+
+#page{
+    background-color: lightgray;
+    width: 800px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+}
+
+header{
+    padding: 60px;
+    text-align: left;
+    background: #76C9E8;
+    color: black;
+    font-size: 30px;
+}
+
+footer{
+    background-color: darkseagreen;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+#main{
+    background-color: linen;
+}
+
+nav{
+    background-color: lightblue;
+    width: 200px;
+    float: left;
+}
+
+#content{
+    background-color: indianred;
+    width: 600px;
+    float: right;
+}
+
+
