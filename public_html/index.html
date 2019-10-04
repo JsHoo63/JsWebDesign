@@ -6,54 +6,90 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>External FishEye lens for your phone.</title>
+        <title>Magic Wide Angle Lens</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="Lab2CSS.css">
+        <link rel="stylesheet" href="bootstrap-4/css/bootstrap.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        
     </head>
     <body>
-        <div class="font">
-        <div class="head">
-        <h1 style="font-size:3vw">External FishEye lens for your phone.</h1>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+            <a class="navbar-brand" href="home.html">Magic Wide Angle Lens</a>
+                <ul class="navbar-nav ml-auto">
+                    <li class = "nav-item"><a class="nav-link" href="Index.html">Product</a></li>
+                    <li class = "nav-item"><a class="nav-link" href="Lab1ContactUs.html">Contact</a></li>
+                </ul>
+        </nav>
+        
+        <div id="demo" class="carousel slide" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                <li data-target="#demo" data-slide-to="1"></li>
+                <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+  
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                <img src="https://mk0new8thns8ww1hc3h8.kinstacdn.com/wp-content/uploads/2019/03/fusionlens2-1.png" alt="lens1" class="imagesetting">
+                </div>
+                <div class="carousel-item">
+                <img src="http://wallperio.com/data/out/473/singapore-wallpaper_623736699.jpg" alt="lens2" class="imagesetting">
+                </div>
+                <div class="carousel-item">
+                <img src="http://sf.co.ua/16/02/wallpaper-e942.jpg" alt="lens3" class="imagesetting">
+                </div>
+            </div>
+  
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
         </div>
-        <ul>
-            <li><a class="active" href="Index.html">Main Menu</a></li>
-            <li><a href="Lab1Register.html">Register</a></li>
-            <li><a href="Lab1LogIn.html">Log In</a></li>
-            <li><a href="Lab1ContactUs.html">Contact Us</a></li>
-        </ul>
+
         <div class="border">
-        <div class="test" align="center">
+        <div class="test" align="right">
         <h1 style="font-size:2vw">Product include shipping fee to worldwide.</h1>
         <p>This fisheye lens able to capture wider and nicer photo through your smarthphone with just a clip on lens.</p>
-        <table border="1" style="width:60%">
+        <table class="table table-dark table-bordered table-hover">
             <br>
-            <tr>
-                <th>Product</th>
-                <th>Description</th> 
-                <th>Price (RM)</th>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Price (RM)</th>
+                </tr>
+            </thead>
          
             <tr>
-                <td>FishEye lens (2 in 1)</td>
-                <td>Wide angle and Micro lens</td> 
-                <td>198.00</td>
+                <th>FishEye lens (2 in 1)</th>
+                <th>Wide angle and Micro lens</th> 
+                <th>299.00</th>
             </tr>
             
             <tr>
-                <td>FishEye lens</td>
-                <td>Wide angle lens only</td> 
-                <td>149.00</td>
+                <th>FishEye lens</th>
+                <th>Wide angle lens only</th> 
+                <th>169.00</th>
             </tr>
             
             <tr>
-                <td>Micro lens</td>
-                <td>Micro lens only</td> 
-                <td>68.00</td>
+                <th>Micro lens</th>
+                <th>Micro lens only</th> 
+                <th>149.00</th>
             </tr>
         </table>
         <br>
-        <input type="button" onclick="Return('Main Menu')" value="Return">
+        <button class="button" style="vertical-align:middle"><span><a href="Lab1Login.html">Proceed</a></span></button>
         </div>
     </body>
 </html>
