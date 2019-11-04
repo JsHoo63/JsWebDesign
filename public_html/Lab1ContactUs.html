@@ -26,17 +26,18 @@ and open the template in the editor.
             <form action="/action_page.php" class="needs-validation" novalidate>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input type="text" class="form-control" id="email" placeholder="Enter your email" name="email" required>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email" required>
+                    <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
                 <div class="form-group">
+                    <script src="http://code.jquery.com/jquery-1.5.js"></script>
                     <label for="word">Message:</label>
-                    <textarea class="form-control" rows="5" id="word" placeholder="Enter your message" name="word" required></textarea>
-                    <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please fill out this field.</div>
+                    <textarea class="form-control" cols="100" rows="5" id="word" maxlength="150" onkeyup="countChar(this)" placeholder="Enter your message" name="word" required></textarea>
+                    <div id="charNum"></div>
+                    <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
                     <button type="submit" class="btn btn-dark">Submit</button>
+                    <button type="button" class="btn btn-dark" onclick="window.location.href='home.html'"><span>Cancel</span></button>
             </form>
             <script>
             // Disable form submissions if there are invalid fields
@@ -57,7 +58,18 @@ and open the template in the editor.
                 });
             }, false);
             })();
+  
+            function countChar(val) {
+                var len = val.value.length;
+                if (len >= 150) {
+                val.value = val.value.substring(0, 150);
+                } else {
+                $('#charNum').text(150 - len + " characters left.");
+                }
+            };
+            
             </script>
+            
         </div>
     </body>
 </html>
