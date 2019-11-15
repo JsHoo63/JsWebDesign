@@ -4,6 +4,36 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+   include("config.php");
+   session_start();
+   
+   if($_SERVER["REQUEST_METHOD"] == "POST") {
+      // username and password sent from form 
+      
+      $myusername = mysqli_real_escape_string($db,$_POST['username']);
+      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+      
+      $sql = "SELECT id FROM admin WHERE username = '$myusername' and passcode = '$mypassword'";
+      $result = mysqli_query($db,$sql);
+      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+      $active = $row['active'];
+      
+      $count = mysqli_num_rows($result);
+      
+      // If result matched $myusername and $mypassword, table row must be 1 row
+		
+      if($count == 1) {
+         session_register("myusername");
+         $_SESSION['login_user'] = $myusername;
+         
+         header("location: welcome.php");
+      }else {
+         $error = "Your Login Name or Password is invalid";
+      }
+   }
+?>
+
 <html>
     <head>
         <title>Magic Wide Angle Lens</title>
@@ -33,7 +63,7 @@ and open the template in the editor.
                     <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="pswd" required>
                     <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
-                <p><a href="Lab1Register.html">Don't have an account? Register here</a></p>
+                <p><a href="Lab1Register.php">Don't have an account? Register here</a></p>
                     <button type="submit" class="btn btn-dark">Submit</button>
                     <button type="button" class="btn btn-dark" onclick="window.location.href='index.html'"><span>Cancel</span></button>
             </form>

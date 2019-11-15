@@ -4,6 +4,57 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php
+
+$firstName = $_POST['firstName'];
+$lastName = $_POST['lastName'];
+$userName = $_POST['userName'];
+$yourEmail = $_POST['yourEmail'];
+$yourAddress = $_POST['yourAddress'];
+$yourPhone = $_POST['yourPhone'];
+$password = $_POST['password'];
+$confirm_password = $_POST['confirm_password'];
+
+if(!empty($firstName) || !empty($lastName) || !empty($userName) || !empty($yourEmail) || !empty($yourAddress) || !empty($yourPhone) || !empty($password)|| !empty($confirm_password)) {
+    
+        $host ="localhost";
+        $dbUsername = "root";
+        $dbPassword = "root";
+        $dbname = "magic_lens";
+        //create connection
+        $conn=new mysqli($host,$dbUsername, $dbPassword, $dbname);
+        if(mysqli_connect_error()) {
+            die('Connect Error('.mysqli_connect_errno().')'.mysqli_connect_error());
+        } else {
+             
+            $SELECT = "SELECT user_email From user_table where user_email = ? Limit 1";
+            $INSERT = "INSERT INTO user_table(user_firstName,user_lastName,user_name,user_email,user_address,user_phone,user_password) values (?,?,?,?,?,?,?)";
+            //Prepare statement
+            $stmt = $conn->prepare($SELECT);
+            $stmt->bind_param("s",$yourEmail);
+            $stmt->execute();
+            $stmt->bind_result($yourEmail);
+            $stmt->store_result();
+            $rnum=$stmt->num_rows;
+            if($rnum == 0){
+                $stmt->close();
+                $stmt = $conn->prepare($INSERT);
+                
+                $stmt->bind_param("sssssis",$firstName,$lastName,$userName,$yourEmail,$yourAddress,$yourPhone,$password);
+                
+                $stmt->execute();
+                
+                echo "New record inserted successfully";
+            } else{
+                $error_message =  "Someone already register using this email";
+            }
+            
+            $stmt->close();
+            $conn->close();
+        }
+}
+?>
+
 <html>
     <head>
         <title>Magic Wide Angle Lens</title>
@@ -23,32 +74,38 @@ and open the template in the editor.
                 </ul>
         </nav>
         
+        
         <div class="border">
         <div class="form1">
-            <form action="/action_page.php" class="needs-validation" novalidate>
+            <form action="#" class="needs-validation" method="post" novalidate>
                 <div class="form-group">
                     <label for="fname">First Name:</label>
-                    <input type="text" class="form-control" id="uname" placeholder="Enter First Name" name="fname" required>
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter First Name" name="firstName" required>
                     <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
                 <div class="form-group">
                     <label for="lname">Last Name:</label>
-                    <input type="text" class="form-control" id="uname" placeholder="Enter Last Name" name="lname" required>
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" name="lastName" required>
+                    <div class="invalid-feedback">Please fill up this field.</div>
+                </div>
+                <div class="form-group">
+                    <label for="lname">User Name:</label>
+                    <input type="text" class="form-control" id="userName" placeholder="Enter User Name" name="userName" required>
                     <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
                 <div class="form-group">
                     <label for="mail">Email:</label>
-                    <input type="email" class="form-control" id="mail" placeholder="Enter Email" name="mail" required>
+                    <input type="email" class="form-control" id="yourEmail" placeholder="Enter Email" name="yourEmail" required>
                     <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
                 <div class="form-group">
                     <label for="address">Address:</label>
-                    <input type="text" class="form-control" id="address" placeholder="Enter Address" name="address" required>
+                    <input type="text" class="form-control" id="yourAddress" placeholder="Enter Address" name="yourAddress" required>
                     <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
                 <div class="form-group">
                     <label for="phone">Phone No:</label>
-                    <input type="tel" class="form-control" id="phone" maxlength="10" placeholder="Enter Phone No" name="phone" required>
+                    <input type="number" class="form-control" id="yourPhone" maxlength="10" placeholder="Enter Phone No" name="yourPhone" required>
                     <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
                 <div class="form-group">
@@ -62,8 +119,11 @@ and open the template in the editor.
                     <span id='message'></span>
                     <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
-                    <button type="submit" class="btn btn-dark">Submit</button>
-                    <button type="button" class="btn btn-dark" onclick="window.location.href='Lab1Login.html'"><span>Cancel</span></button>
+                <?php if(isset($error_message)){
+            echo '<h1>' .$error_message. '</h1>';
+        } ?>
+                <button type="submit" id="submit" class="btn btn-dark" disabled>Submit</button>
+                <button type="button" class="btn btn-dark" onclick="window.location.href='/Lab1Login.php'"><span>Cancel</span></button>
             </form>
             
             <script>
@@ -87,11 +147,22 @@ and open the template in the editor.
             })();
             
             $('#password, #confirm_password').on('keyup', function () {
+                
                 if ($('#password').val() == $('#confirm_password').val()) {
-                    $('#message').html('Matching').css('color', 'green');
-                } else 
-                    $('#message').html('Not Matching').css('color', 'red');
+                    if ($('#password').val() =='' || $('#confirm_password').val() == ''){
+                        $('#message').html('Please Enter Password').css('color', 'red');
+                        $('#submit').attr('disabled',true);
+                    }
+                    else{
+                        $('#message').html('Password Matching').css('color', 'green');
+                        $('#submit').attr('disabled',false);
+                    }
+                }else {
+                    $('#message').html('Password Not Matching').css('color', 'red');
+                    $('#submit').attr('disabled',true);
+                }
             });
+            
             </script>
             
         </div>
