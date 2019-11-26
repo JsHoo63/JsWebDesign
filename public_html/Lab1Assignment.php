@@ -15,12 +15,12 @@ and open the template in the editor.
         <h1 style="font-size:10vw">Product include shipping fee to worldwide.</h1>
         <p>This fisheye lens able to capture wider and nicer photo through your smarthphone with just a clip on lens.</p>
         <ul>
-            <li><a href="Lab1ContactUs.html">Contact</a></li>
-            <li><a href="Lab1LogIn.html">Log In</a></li>
-            <li><a href="Lab1Register.html">Register</a></li>
-            <li><a href="phtoReview.html">Review</a></li>
-            <li><a href="Index.html">Product</a></li>
-            <li><a href="home.html">Home</a></li>
+            <li><a href="Lab1ContactUs.php">Contact</a></li>
+            <li><a href="Lab1LogIn.php">Log In</a></li>
+            <li><a href="Lab1Register.php">Register</a></li>
+            <li><a href="phtoReview.php">Review</a></li>
+            <li><a href="Index.php">Product</a></li>
+            <li><a href="home.php">Home</a></li>
         </ul>
     </body>
 </html>

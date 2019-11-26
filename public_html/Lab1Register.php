@@ -67,10 +67,10 @@ if(!empty($firstName) || !empty($lastName) || !empty($userName) || !empty($yourE
     </head>
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-            <a class="navbar-brand" href="home.html">Magic Wide Angle Lens</a>
+            <a class="navbar-brand" href="home.php">Magic Wide Angle Lens</a>
                 <ul class="navbar-nav ml-auto">
-                    <li class = "nav-item"><a class="nav-link" href="Index.html">Product</a></li>
-                    <li class = "nav-item"><a class="nav-link" href="Lab1ContactUs.html">Contact</a></li>
+                    <li class = "nav-item"><a class="nav-link" href="Index.php">Product</a></li>
+                    <li class = "nav-item"><a class="nav-link" href="Lab1ContactUs.php">Contact</a></li>
                 </ul>
         </nav>
         
@@ -123,7 +123,7 @@ if(!empty($firstName) || !empty($lastName) || !empty($userName) || !empty($yourE
             echo '<h1>' .$error_message. '</h1>';
         } ?>
                 <button type="submit" id="submit" class="btn btn-dark" disabled>Submit</button>
-                <button type="button" class="btn btn-dark" onclick="window.location.href='/Lab1Login.php'"><span>Cancel</span></button>
+                <button type="button" class="btn btn-dark" onclick="window.location.href='Lab1Login.php'"><span>Cancel</span></button>
             </form>
             
             <script>

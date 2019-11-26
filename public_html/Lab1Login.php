@@ -5,31 +5,40 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <?php
-   include("config.php");
+   include("Config.php");
+   if(!$db){
+       die("Connection failed: ". mysqli_connect_error());
+   }
    session_start();
+
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
       
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+      $userName = mysqli_real_escape_string($db,$_POST['userName']);
+      $password = mysqli_real_escape_string($db,$_POST['password']); 
+       
+      $sql = "SELECT user_id FROM user_table WHERE user_name = '$userName' and user_password = '$password'";
       
-      $sql = "SELECT id FROM admin WHERE username = '$myusername' and passcode = '$mypassword'";
       $result = mysqli_query($db,$sql);
+    
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      $active = $row['active'];
-      
+
       $count = mysqli_num_rows($result);
       
       // If result matched $myusername and $mypassword, table row must be 1 row
 		
-      if($count == 1) {
-         session_register("myusername");
-         $_SESSION['login_user'] = $myusername;
+      if($count != 0) {
+         $_SESSION['user_table'] = $userName;
+         $error_message = "Login successfully";
+         header("Location: welcome.php");
          
-         header("location: welcome.php");
       }else {
-         $error = "Your Login Name or Password is invalid";
+         $error_message = "Your Login Name or Password is invalid";
+      }
+      
+      if(isset($_SESSION['user_table'])) {
+          
       }
    }
 ?>
@@ -44,28 +53,31 @@ and open the template in the editor.
     </head>
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-            <a class="navbar-brand" href="home.html">Magic Wide Angle Lens</a>
+            <a class="navbar-brand" href="home.php">Magic Wide Angle Lens</a>
                <ul class="navbar-nav ml-auto">
-                    <li class = "nav-item"><a class="nav-link" href="Index.html">Product</a></li>
-                    <li class = "nav-item"><a class="nav-link" href="Lab1ContactUs.html">Contact</a></li>
+                    <li class = "nav-item"><a class="nav-link" href="Index.php">Product</a></li>
+                    <li class = "nav-item"><a class="nav-link" href="Lab1ContactUs.php">Contact</a></li>
                 </ul>
         </nav>
+        
             <div class="border">
             <div class="form1">
-            <form action="/action_page.php" class="needs-validation" novalidate>
+            <form action="#" method="post" class="needs-validation" novalidate>
                 <div class="form-group">
+                    
                     <label for="uname">Username:</label>
-                    <input type="text" class="form-control" id="uname" placeholder="Enter Username" name="uname" required>
+                    <input type="text" class="form-control" id="uname" placeholder="Enter Username" name="userName" required>
                     <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
                 <div class="form-group">
                     <label for="pwd">Password:</label>
-                    <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="pswd" required>
+                    <input type="password" class="form-control" id="pwd" placeholder="Enter Password" name="password" required>
                     <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
                 <p><a href="Lab1Register.php">Don't have an account? Register here</a></p>
                     <button type="submit" class="btn btn-dark">Submit</button>
-                    <button type="button" class="btn btn-dark" onclick="window.location.href='index.html'"><span>Cancel</span></button>
+                    <button type="button" class="btn btn-dark" onclick="window.location.href='index.php'"><span>Cancel</span></button>
+                    <p><?php echo $error_message;?></p>
             </form>
 
             <script>

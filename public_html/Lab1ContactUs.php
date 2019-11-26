@@ -15,10 +15,16 @@ and open the template in the editor.
     
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-            <a class="navbar-brand" href="home.html">Magic Wide Angle Lens</a>
+            <a class="navbar-brand" href="home.php">Magic Wide Angle Lens</a>
                 <ul class="navbar-nav ml-auto">
-                    <li class = "nav-item"><a class="nav-link" href="Index.html">Product</a></li>
-                    <li class = "nav-item"><a class="nav-link" href="Lab1ContactUs.html">Contact</a></li>
+                    <li class = "nav-item"><a class="nav-link" href="Index.php">Product</a></li>
+                    <li class = "nav-item"><a class="nav-link" href="Lab1ContactUs.php">Contact</a></li>
+                    <?php
+                    session_start();
+                        if(isset($_SESSION['user_table'])){
+                            echo '<li class = "nav-item"><a class="nav-link" href="logout.php">LogOut</a></li>';
+                        }
+                    ?>
                 </ul>
         </nav>
         <div class="border">
@@ -37,7 +43,7 @@ and open the template in the editor.
                     <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
                     <button type="submit" class="btn btn-dark">Submit</button>
-                    <button type="button" class="btn btn-dark" onclick="window.location.href='home.html'"><span>Cancel</span></button>
+                    <button type="button" class="btn btn-dark" onclick="window.location.href='home.php'"><span>Cancel</span></button>
             </form>
             <script>
             // Disable form submissions if there are invalid fields

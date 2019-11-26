@@ -17,10 +17,16 @@ and open the template in the editor.
     </head>
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-            <a class="navbar-brand" href="home.html">Magic Wide Angle Lens</a>
+            <a class="navbar-brand" href="home.php">Magic Wide Angle Lens</a>
                 <ul class="navbar-nav ml-auto">
-                    <li class = "nav-item"><a class="nav-link" href="Index.html">Product</a></li>
-                    <li class = "nav-item"><a class="nav-link" href="Lab1ContactUs.html">Contact</a></li>
+                    <li class = "nav-item"><a class="nav-link" href="Index.php">Product</a></li>
+                    <li class = "nav-item"><a class="nav-link" href="Lab1ContactUs.php">Contact</a></li>
+                    <?php
+                    session_start();
+                        if(isset($_SESSION['user_table'])){
+                            echo '<li class = "nav-item"><a class="nav-link" href="logout.php">LogOut</a></li>';
+                        }
+                    ?>
                 </ul>
         </nav>
         <img src="https://mk0new8thns8ww1hc3h8.kinstacdn.com/wp-content/uploads/2019/03/fusionlens2-1.png" alt="lens1" class="imagesetting">
@@ -43,7 +49,7 @@ and open the template in the editor.
             + 360° shooting
             <br>
             <br>
-            <button class="button" style="vertical-align:middle" onclick="window.location.href='index.html'"><span>Buy Now</span></button>
+            <button class="button" button type="button" class="btn btn-dark" onclick="window.location.href='index.php'"><span>Buy Now</span></button>
             </div>
         </form> 
     </body>

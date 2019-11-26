@@ -18,10 +18,16 @@ and open the template in the editor.
     </head>
     <body>
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-            <a class="navbar-brand" href="home.html">Magic Wide Angle Lens</a>
+            <a class="navbar-brand" href="home.php">Magic Wide Angle Lens</a>
                 <ul class="navbar-nav ml-auto">
-                    <li class = "nav-item"><a class="nav-link" href="Index.html">Product</a></li>
-                    <li class = "nav-item"><a class="nav-link" href="Lab1ContactUs.html">Contact</a></li>
+                    <li class = "nav-item"><a class="nav-link" href="index.php">Product</a></li>
+                    <li class = "nav-item"><a class="nav-link" href="Lab1ContactUs.php">Contact</a></li>
+                    <?php
+                    session_start();
+                        if(isset($_SESSION['user_table'])){
+                            echo '<li class = "nav-item"><a class="nav-link" href="logout.php">LogOut</a></li>';
+                        }
+                    ?>
                 </ul>
         </nav>
         
@@ -125,7 +131,12 @@ and open the template in the editor.
             </tr>
         </table>
         <br>
-        <button class="button" style="vertical-align:middle" onclick="window.location.href='Lab1Login.php'"><span>Proceed</span></button>
+       
+        
+        
+        <button class="button" style="vertical-align:middle" onclick="window.location.href='<?php if(isset($_SESSION['user_table'])){echo "welcome.php";}else{echo "Lab1Login.php";}?>';"><span>Proceed</span></button>
+       
+        
        
         </div>
     </body>
