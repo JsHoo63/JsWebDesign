@@ -52,7 +52,7 @@
                     <div class="invalid-feedback">Please fill up this field.</div>
                 </div>
                 <button class="button" button type="button" class="btn btn-dark" style="vertical-align:middle" onclick="window.location.href='welcome.php'"><span>Back</span></button>
-                <button class="button" button type="submit" id="button" style="vertical-align:middle" onclick="window.location.href='thankYou.php'"><span>Proceed</span></button>
+                <button class="button" button type="button" id="button" style="vertical-align:middle" onclick="window.location.href='thankYou.php'"><span>Proceed</span></button>
             </form>
                 
             <script>
